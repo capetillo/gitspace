@@ -16,6 +16,19 @@
     "mongoose": "^5.7.12",
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
-    "passport-github": "^1.1.0"
-  }
+    "passport-google-oauth": "^2.0.0"
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capetillo/gitspace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/capetillo/gitspace/issues"
+  },
+  "homepage": "https://github.com/capetillo/gitspace#readme",
+  "description": ""
 }

@@ -4,6 +4,10 @@ module.exports = {
     index
 }
 
+// renders the log in page
 function index(req, res) {
-    res.render('users/index')
+    console.log("REQ BODY" , req.body);
+    res.render('users/index');
 }
+
+
