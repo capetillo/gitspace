@@ -6,9 +6,28 @@ module.exports = {
     delete: deleteStatus
 }
 // (get method) function that renders user's profile 
-function index(req, res) {
-    res.render('profiles/index')
-}
+
+function index(req, res, next) {
+    console.log("REQ QUERY BABY" , req.query.name)
+    // Make the query object to use with Student.find based up
+    // the user has submitted the search form or now
+    let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
+    // Default to sorting by name
+    let sortKey = req.query.sort || 'name';
+    Profile.find(modelQuery)
+    .sort(sortKey).exec(function(err, profiles) {
+      if (err) return next(err);
+      // Passing search values, name & sortKey, for use in the EJS
+      res.render('profiles/index', { 
+        profiles, 
+        // if you have a user this is their mongo document v
+        user: req.user,
+        name: req.query.name, 
+        googleId: req.query.googleId,
+        sortKey 
+      });
+    });
+  }
 
 // (thru post method) Creates a new status/post 
 function addStatus(req, res) {

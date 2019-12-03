@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-   <h1>Hello World 2.0 </h1> 
+    <% profiles.forEach(function(profile) { %>
+    <h1><%= profile.name %></h1>
+    <% }) %>
 </body>
 </html>

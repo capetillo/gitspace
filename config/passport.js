@@ -7,7 +7,8 @@ passport.use(new GoogleStrategy({
     // we put the clientID on the env file so we're getting it 
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK
+    callbackURL: process.env.GOOGLE_CALLBACK,
+    //passReqToCallback: true
 },
 
     //accessToken: what they want to do with it

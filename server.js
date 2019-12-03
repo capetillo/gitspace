@@ -1,9 +1,14 @@
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
+var logger = require('morgan');
+
+// require our routes
+var indexRoutes = require('./routes/index');
+var usersRoutes = require('./routes/users');
+
 
 // load the env vars
 require('dotenv').config();
@@ -14,10 +19,6 @@ var app = express();
 // connect to the MongoDB with mongoose
 require('./config/database');
 require('./config/passport');
-
-// require our routes
-var indexRoutes = require('./routes/index');
-var usersRoutes = require('./routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,6 +40,7 @@ app.use(passport.session());
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
 app.use('/users', usersRoutes);
+
 
 // invalid request, send 404 page
 app.use(function(req, res) {
