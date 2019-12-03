@@ -5,6 +5,7 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+  
   res.render('index', { title: 'Express' });
 });
 
@@ -21,7 +22,7 @@ router.get('/oauth2callback', //function (req, res) {
   passport.authenticate(
     'google',
     {
-      successRedirect: '/users/:id',
+      successRedirect: '/users',
       failureRedirect: '/users'
     }
   )

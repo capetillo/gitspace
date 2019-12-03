@@ -5,8 +5,8 @@ var usersCtrl = require('../controllers/users')
 /* GET users listing. */
 
 router.get('/', usersCtrl.index);
-router.get('/:id', isLoggedin, usersCtrl.viewProfile)
 router.post('/:id', isLoggedin, usersCtrl.shareStatus)
+router.get('/:id', isLoggedin, usersCtrl.viewProfile)
 
 function isLoggedin(req, res, next) {
     if (req.isAuthenticated() ) return next();

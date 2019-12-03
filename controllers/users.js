@@ -2,20 +2,20 @@ var User = require('../models/user')
 
 module.exports = {
     index,
-    viewProfile,
-    shareStatus
+    shareStatus,
+    viewProfile
 }
 
 // renders the log in page
-function index(req, res) {
-    console.log("REQ BODY" , req.body);
-    res.render('users/index');
-}
+// function index(req, res) {
+//     console.log("REQ BODY" , req.body);
+//     res.render('users/index');
+// }
 
 
 
-function viewProfile(req, res, next) {
-    console.log("ID????" , req.user.id)
+function index(req, res, next) {
+  
 
     // Make the query object to use with Student.find based up
     // the user has submitted the search form or now
@@ -26,6 +26,7 @@ function viewProfile(req, res, next) {
     .sort(sortKey).exec(function(err, users) {
       if (err) return next(err);
       // Passing search values, name & sortKey, for use in the EJS
+      console.log("USER ", users)
       res.render('users/index', { 
         users, 
         // if you have a user this is their mongo document v
@@ -37,6 +38,19 @@ function viewProfile(req, res, next) {
   }
 
   function shareStatus(req, res) {
-      res.redirect('users/:id')
-    }
+    req.user.status.push(req.body.status)
+    let newStatus = req.user.status
+    User.findByIdAndUpdate(req.user.id, {status: newStatus}, {new: true}, (err, user) => {
+      res.redirect('/users')
+    })
+    
+  }
+
   
+function viewProfile(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    res.render('users/profile', {
+      user
+    })
+  });
+}
