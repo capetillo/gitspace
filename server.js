@@ -5,14 +5,16 @@ var session = require('express-session');
 var passport = require('passport');
 var logger = require('morgan');
 
+// load the env vars
+require('dotenv').config();
+
 // require our routes
 var indexRoutes = require('./routes/index');
 var usersRoutes = require('./routes/users');
 var messagesRoutes = require('./routes/messages')
 
 
-// load the env vars
-require('dotenv').config();
+
 
 // create the Express app
 var app = express();

@@ -1,19 +1,26 @@
 var mongoose = require('mongoose');
 
-var conversationSchema = new mongoose.Schema({
-    text: String
-}, {
-    timestamps: true
-});
+const messageSchema = mongoose.Schema({
+    created: {
+      type: Date,
+      required: true
+    },
+    from: {
+      type: String,
+      required: true
+    },
+    text: {
+      type: String,
+      required: true
+    },
+    conversationId: {
+      type: String,
+      required: true
+    },
+    online: {
+      type: Boolean,
+      required: false
+    },
+  });
 
-var messageSchema = new mongoose.Schema({
-    name: String,
-    conversation: [conversationSchema],
-
-
-}, {
-    timestamps: true
-});
-
-
-module.exports = mongoose.model('Message', messageSchema);
+  module.exports = mongoose.model('Message', messageSchema);
