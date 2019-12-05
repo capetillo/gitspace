@@ -8,7 +8,10 @@
 </head>
 <body>
     <h1>Sup dawgie</h1>
-    <form action="/messages/<%= user.id %>">
-    <input type="text"><button>send</button></form>
+    <% user.message.forEach(function(m) { %>
+    <h2><%= user.m %></h2>
+    <% }) %>
+    <form action="/users/<%= user.id %>/messages" method="POST">
+    <input type="text" name="message"><button>send</button></form>
 </body>
 </html>

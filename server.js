@@ -11,10 +11,6 @@ require('dotenv').config();
 // require our routes
 var indexRoutes = require('./routes/index');
 var usersRoutes = require('./routes/users');
-var messagesRoutes = require('./routes/messages')
-
-
-
 
 // create the Express app
 var app = express();
@@ -43,8 +39,6 @@ app.use(passport.session());
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
 app.use('/users', usersRoutes);
-app.use('/messages', messagesRoutes);
-
 
 // invalid request, send 404 page
 app.use(function(req, res) {

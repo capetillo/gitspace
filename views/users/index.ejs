@@ -22,23 +22,16 @@
         <% } %>
         </li>
     </ul>
-    <h3><a href="/users/<%= user.id %>">profile</a></h1>
-      
+    <h3><a href="/users/<%= user.id %>">profile</a></h1>   
   <div>
     <h1><%= user.name %></h1>
-    
-
   </div>
- 
-   
-
       <div class="card-action">
         <form action="/users/<%= user.id %>" method="POST">
           <input type="text" name="status" class="white-text">
           <button>SHARE YOUR MOOD</button>
         </form>
       </div>
-   
   </div>
 </div>
 

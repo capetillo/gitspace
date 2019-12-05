@@ -1,24 +1,15 @@
 var User = require('../models/user')
+var Message = require('../models/message');
 
 module.exports = {
   index,
   shareStatus,
-  viewProfile
+  viewProfile,
+  viewInbox,
+  sendMessage
 }
 
-// renders the log in page
-// function index(req, res) {
-//     console.log("REQ BODY" , req.body);
-//     res.render('users/index');
-// }
-
-
-
 function index(req, res, next) {
-
-
-  // Make the query object to use with Student.find based up
-  // the user has submitted the search form or now
   let modelQuery = req.query.name ? { name: new RegExp(req.query.name, 'i') } : {};
   // Default to sorting by name
   let sortKey = req.query.sort || 'name';
@@ -29,7 +20,7 @@ function index(req, res, next) {
       console.log("USER ", users)
       res.render('users/index', {
         users,
-        // if you have a user this is their mongo document v
+        // if you have a user this is their mongo document
         user: req.user,
         name: req.query.name,
         sortKey
@@ -43,9 +34,7 @@ function shareStatus(req, res) {
   User.findByIdAndUpdate(req.user.id, { status: newStatus }, { new: true }, (err, user) => {
     res.redirect('/users')
   });
-
 }
-
 
 function viewProfile(req, res) {
   User.findById(req.params.id, function (err, user) {
@@ -54,3 +43,99 @@ function viewProfile(req, res) {
     })
   });
 }
+
+function viewInbox(req, res) {
+  User.findById(req.params.id, function (err, user) {
+    res.render('users/messages', {
+      user
+    });
+  });
+}
+
+function sendMessage(req, res) {
+  // let messenger = new Message({from: req.})
+  // if (req.user.id !== req.message)
+  let newMessage = new Message({text: req.body.message});
+  User.findById(req.params.id).populate('Message').exec((err,user) => {
+    user.message.push(newMessage)
+    console.log("message message" , newMessage)
+    res.render('users/messages', {
+      user
+    })
+  });
+}
+//     .find().populate('user')
+//     res.render('users/messages')
+//     .then(messages => {
+//         res.status(200).json({
+//             message: 'Success',
+//             obj: messages
+//         });
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json({
+//             title: 'Error',
+//             error: err
+//         });
+//     });
+// }
+
+// function sendMessage(req, res, next)
+
+// //function with get method that renders the page of messages between user 1 and user 2
+// // function index(req, res) {
+// //     console.log("messages!!")
+// //     Message.find().populate
+// //     User.findById(req.params.id, function (err, messages) {
+// //         res.render('messages/index', {
+// //             messages
+// //         });
+// //     });
+// // }
+
+
+// // User.findById(decoded.user._id)
+// // .then(user => {
+// //     if (!user) throw new Error('User Not Found');
+
+// //     const message = new Message({
+// //         content: req.body.content,
+// //         user: user
+// //     });
+
+// //     message.save().then(result => {
+// //         user.messages.push(result._id);
+// //         user.save().then(() => {
+// //             res.status(201).json({
+// //                 message: 'Saved Message',
+// //                 obj: result
+// //             });
+// //         });
+// //     });
+// // })
+// // .catch(err => {
+// //     console.log(err);
+// //     res.status(500).json({
+// //         title: 'An Error Occurred',
+// //         error: err
+// //     });
+// // });
+// // });
+// // function with post method that when clicked (button on ejs will have a form with 
+// // post method and the path will be sent to the page to save the info )
+
+
+// // function sendMessage(req, res) {
+// //     req.message.text.push(req.body);
+// //     let newMessage = req.message.text
+// //     Message.findByIdAndUpdate(req.message.id, {message: newMessage}, {new: true}, (err, message) => {
+// //         res.redirect('/messages/index')
+// //     });
+// // }
+
+//       // if message is scheduled, send it on the scheduled date 
+//       // if not scheduled, send it on click
+
+// // function deleteMessage(req, res) {
+
+// // }
