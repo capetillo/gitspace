@@ -11,11 +11,17 @@
 <body>
     <div>
         <h1><%= user.name %></h1>
+        
         <h3><a href="/users/<%= user.id %>/messages">message this homie</a></h3>
+        
         <% user.status.forEach(function(s) { %>
-            <h3><%= s %></h3>
+            
+            <h3><%= s %></h3><button>X</button></form>
             <%  }) %>
-    
+
+           
+           
+        
     </div>
 </body>
 

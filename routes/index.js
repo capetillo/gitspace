@@ -4,10 +4,10 @@ var passport = require('passport');
 var request = require('request');
 const rootURL = 'https://api.github.com/';
 
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  
-  res.render('index', { title: 'Express' });
+  res.redirect('/users')
 });
 
 router.get('/', function (req, res, next) {
@@ -53,4 +53,5 @@ router.post('/', function(req, res) {
   });
 });
 
-module.exports = router;
+  
+module.exports = router

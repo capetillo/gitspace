@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
+
 <body>
     <div class="navbar-fixed">
         <nav>
-          <div class="nav-wrapper">
-            <a href="" class="brand-logo left">GitSpace</a>
-            <ul class="right">
-              <li>
-    
-                <a href="/auth/google">Login with Google</a>
-    
-              </li>
-            </ul>
-          </div>
+            <div class="nav-wrapper">
+                <a href="" class="brand-logo left">GitSpace</a>
+                <ul class="right">
+                    <li>
+                        <a href="/auth/google">Login with Google</a>
+                    </li>
+
+                    <% if (user) { %>
+                    <ul class="right">
+                        <li>
+                            <% if (user) { %>
+                            <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
+                            <% } else { %>
+                            <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
+                            <% } %>
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+                <h3><a href="/users/<%= user.id %>">profile</a></h1>
+                    <div>
+                        <h1><%= user.name %></h1>
+                    </div>
         </nav>
-      </div>
+
+        <%= userData.login %>
+        <img src="<%= userData.avatar_url %>">
+        <%= userData.type %>
+        <%= userData.location %>
+        </li>
+        </ul>
+    </div>
+    </nav>
+    </div>
+    <hr>
+    <% } else { %>
+    <p>Login Bitch</p>
+    <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
+    <% } %>
 </body>
+
 </html>

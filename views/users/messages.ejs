@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Sup dawgie</h1>
-    <% user.message.forEach(function(m) { %>
-    <h2><%= user.m %></h2>
-    <% }) %>
+    <h1>Sup dawg</h1>
     <form action="/users/<%= user.id %>/messages" method="POST">
-    <input type="text" name="message"><button>send</button></form>
+        <input type="text" name="message"><button>send</button></form>
+        
+
+        <% user.message.forEach(function(message) { %>
+           
+    <form action='/users/<%=user.id%>/messages/<%=message.id%>?_method=DELETE'
+        class="delete-form" method="POST">
+        <h2><%= message.text %></h2> <button>X</button></form> 
+
+    <% }) %>
+
 </body>
+
 </html>
