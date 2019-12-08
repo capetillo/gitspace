@@ -1,16 +1,9 @@
 var mongoose = require('mongoose');
 
 var citySchema = new mongoose.Schema({
-    city:{
+    city: {
         type: String,
         required: true,
-    }, 
-    state: {
-        type: String
-    },
-    about: {
-        type: String,
-        required: true
     }
 });
 

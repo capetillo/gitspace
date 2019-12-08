@@ -6,6 +6,7 @@ var passport = require('passport');
 var logger = require('morgan');
 var methodOverride = require('method-override');
 
+
 // load the env vars
 require('dotenv').config();
 
@@ -16,6 +17,9 @@ var citiesRoutes = require('./routes/cities');
 
 // create the Express app
 var app = express();
+
+// socket setupp
+
 
 // connect to the MongoDB with mongoose
 require('./config/database');

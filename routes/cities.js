@@ -4,10 +4,10 @@ var citiesCtrl = require('../controllers/cities');
 
 /* GET users listing. */
 
-router.get('/cities', isLoggedin, citiesCtrl.index);
-router.put('/cities/:id', isLoggedin, citiesCtrl.updateCity);
-router.post('/users/:id/cities', isLoggedin, citiesCtrl.addToProfile);
-router.post('/cities', isLoggedin, citiesCtrl.create);
+router.get('/users/:id/cities', isLoggedin, citiesCtrl.index);
+// router.put('/users/:id/cities/:cityId', isLoggedin, citiesCtrl.updateCity);
+// router.post('/users/:id/cities', isLoggedin, citiesCtrl.addToProfile);
+router.post('/users/cities', isLoggedin, citiesCtrl.create);
 
 
 

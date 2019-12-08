@@ -57,15 +57,16 @@ function viewInbox(req, res) {
 
 function sendMessage(req, res) {
   let newMessage = new Message({ text: req.body.message });
+  console.log("NEW MESSAGE BABY", newMessage)
   User.findById(req.params.id).populate('message').exec(function (err, user) {
     Message.findById(newMessage.id, (err, message) => {
       user.message.push(newMessage);
       user.save(function (err, user) {
         res.render('users/messages', {
-        user,
-        message
-      });
-      
+          user,
+          message
+        });
+
       });
     });
   });
@@ -75,9 +76,9 @@ function sendMessage(req, res) {
 function deleteMessage(req, res) {
   Message.findByIdAndDelete(req.params.messageId, function (err) {
     res.redirect(`/users/${req.params.id}/messages`)
-      
-    });
-  };
+
+  });
+};
 
 
 

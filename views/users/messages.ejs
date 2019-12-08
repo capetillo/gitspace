@@ -16,7 +16,7 @@
 
         <% user.message.forEach(function(message) { %>
            
-    <form action='/users/<%=user.id%>/messages/<%=message.id%>?_method=DELETE'
+    <form action="/users/<%=user.id%>/messages/<%=message.id%>?_method=DELETE"
         class="delete-form" method="POST">
         <h2><%= message.text %></h2> <button>X</button></form> 
 

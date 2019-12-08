@@ -10,18 +10,25 @@
 
 <body>
     <div>
+        <div>
+            <a href="/users/<%= user.id %>/cities"><button>Check out cities idk</button></a>
+        </div>
         <h1><%= user.name %></h1>
-        
-        <h3><a href="/users/<%= user.id %>/messages">message this homie</a></h3>
-        
-        <% user.status.forEach(function(s) { %>
-            
-            <h3><%= s %></h3><button>X</button></form>
-            <%  }) %>
 
-           
-           
-        
+        <h3><a href="/users/<%= user.id %>/messages">message this homie</a></h3>
+
+        <% user.status.forEach(function(s) { %>
+
+        <h3><%= s %></h3><button>X</button></form>
+        <%  }) %>
+
+        <% user.city.forEach(function(c) { %>
+        <h3><%= c %></h3>
+        <% }) %>
+
+
+
+
     </div>
 </body>
 
