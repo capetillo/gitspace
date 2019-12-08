@@ -6,7 +6,8 @@ var citiesCtrl = require('../controllers/cities');
 
 router.get('/users/:id/cities', isLoggedin, citiesCtrl.index);
 router.post('/users/:id/cities', isLoggedin, citiesCtrl.create);
-// router.put('/users/:id/cities/:cityId', isLoggedin, citiesCtrl.updateCity);
+router.put('/users/:id/cities', isLoggedin, citiesCtrl.updateCity);
+
 
 
 

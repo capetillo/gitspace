@@ -4,7 +4,8 @@ var User = require('../models/user');
 module.exports = {
     index,
     create,
-    // updateCity,
+    updateCity,
+   
 };
 
 // I have to pass city in users ctrl to access the diff properties of cities on users ejs 
@@ -25,11 +26,20 @@ module.exports = {
 //     });
 // }
 
-
+function index(req, res) {
+    User.findById(req.params.id, function (err, user) {
+        City.find({}, function (err, city) {
+            
+            res.render('cities/index', {
+                user,
+                city
+            })
+        });
+    });
+};
 
 function create(req, res) {
     let newCity = new City({ city: req.body.city });
-
     User.findById(req.params.id).populate('city').exec(function (err, user) {
         City.findById(newCity.id, (err, city) => {
             user.city.push(newCity);
@@ -45,28 +55,16 @@ function create(req, res) {
     });
 }
 
-
-
-function index(req, res) {
-    User.findById(req.params.id, function (err, user) {
-        City.find({}, function (err, city) {
-            res.render('cities/index', {
-                user,
-                city
-            })
+function updateCity(req, res) {
+    City.findByIdAndUpdate(req.params.cityId, req.body, {
+        new: true
+    }
+    ).then(function (err, updatedCity) {
+        res.render(`users/${req.params.id}`, {
+            updatedCity
         });
     });
-};
+}
 
-// function updateCity(req, res) {
-//     City.findByIdAndUpdate(req.params.cityId, req.body, {
-//         new: true
-//     }
-//     ).then(function (err, updatedCity) {
-//         res.render(`users/${req.params.id}`, {
-//             updatedCity
-//         });
-//     });
-// }
 
 

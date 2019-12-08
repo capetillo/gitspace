@@ -21,19 +21,19 @@
 
         <h3><%= s %></h3><button>X</button></form>
         <%  }) %>
+
         <h2>This is where I'm from: </h2>
         <% user.city.forEach(function(c) { %>
 
         <h3><%= c %></h3>
-      
         <% }) %>
-        <a href="/users/<%= user.id %>/cities"><button>Update where you live</button></a> 
 
-        
-
-
-
-
+        <h3>Did you move?</h3>
+        <div>
+            <form action="/users/<%=user.id%>/cities?_method=POST" method="POST">
+                <input type="text"><button>Update</button>
+            </form>
+        </div>
     </div>
 </body>
 

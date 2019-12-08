@@ -41,6 +41,7 @@ function shareStatus(req, res) {
 function viewProfile(req, res) {
   User.findById(req.params.id, function (err, user) {
     City.find({}, function (err, city) {
+      console.log("City on profile", City)
       res.render('users/profile', {
         user,
         city
