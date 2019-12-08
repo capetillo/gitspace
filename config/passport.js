@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
             if (err) return cb(err);
             // if we get a document, return user
             if (user) {
-                console.log("THIS IS USER" , user)
+                
                 if(!user.avatar) {
                     //update code here!!!!!!!!HERE!!!!!!!
                     //HERE HERE HERE HERE

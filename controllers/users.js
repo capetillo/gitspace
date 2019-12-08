@@ -1,6 +1,6 @@
 var User = require('../models/user')
 var Message = require('../models/message');
-
+var City = require('../models/city');
 module.exports = {
   index,
   shareStatus,
@@ -19,7 +19,7 @@ function index(req, res, next) {
     .sort(sortKey).exec(function (err, users) {
       if (err) return next(err);
       // Passing search values, name & sortKey, for use in the EJS
-      console.log("USER ", users)
+   
       res.render('users/index', {
         users,
         // if you have a user this is their mongo document
@@ -40,15 +40,17 @@ function shareStatus(req, res) {
 
 function viewProfile(req, res) {
   User.findById(req.params.id, function (err, user) {
-    res.render('users/profile', {
-      user
+    City.find({}, function (err, city) {
+      res.render('users/profile', {
+        user,
+        city
+      });
     })
   });
 }
 
 function viewInbox(req, res) {
   User.findById(req.params.id).populate('message').exec((err, user) => {
-    console.log("THIS IS FIRED ", user)
     res.render('users/messages', {
       user
     });
@@ -57,7 +59,6 @@ function viewInbox(req, res) {
 
 function sendMessage(req, res) {
   let newMessage = new Message({ text: req.body.message });
-  console.log("NEW MESSAGE BABY", newMessage)
   User.findById(req.params.id).populate('message').exec(function (err, user) {
     Message.findById(newMessage.id, (err, message) => {
       user.message.push(newMessage);

@@ -10,9 +10,9 @@
 
 <body>
     <h1>Where are you from?</h1>
-    <form action="/users/<%=user.id%>/cities" method="POST">
-        <h3>City:</h3><input type="text"> </form>
-        <a href="/users/<%= user.id %>"> <button>Submit</button></a>
+    <h3>City:</h3>
+    <form action="/users/<%= user.id %>/cities" method="POST">
+        <input type="text" name="city"><button>submit</button></form>
 </body>
 
 </html>
