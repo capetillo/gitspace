@@ -10,7 +10,7 @@ HTML, CSS, Javascript, Express, MongoDB, and Node.js
 
 ## Getting Started:
 
-Log in with Google through Google OAuth here: 
+Log in with Google through Google OAuth here: https://sei-gitspace.herokuapp.com/
 
 ## Next Steps: 
 
