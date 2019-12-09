@@ -2,16 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Main Page</title>
+  <link href="https://fonts.googleapis.com/css?family=Solway:800&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <h1>Sup dawg</h1>
+      <nav class="navbar">
+          <% if (user) { %>
+          <ul class="right">
+            <li>
+              <% if (user) { %>
+              <a href="/logout">Log Out</a>
+              <% } else { %>
+              <a href="/auth/google">Login with Google</a>
+              <% } %>
+            </li>
+            <li>
+              <a href="/users/<%=user.id%>/messages">Reminders</a>
+            </li>
+            <li>
+              <a href="/users/<%=user.id%>">Profile</a>
+            </li>
+            <li>
+              <a href="/users/<%=user.id%>/cities">Goals</a>
+            </li>
+          </ul>
+      </nav>
+   
+    <div class="reminders">
+    <h1>Don't forget to:</h1>
     <form action="/users/<%= user.id %>/messages" method="POST">
-        <input type="text" name="message"><button>send</button></form>
+        <input type="text" name="message"><button class="sendreminder">send</button></form>
         
 
         <% user.message.forEach(function(message) { %>
@@ -21,7 +45,9 @@
         <h2><%= message.text %></h2> <button>X</button></form> 
 
     <% }) %>
-
+    <% } else { %>
+        <a href="/auth/google">Login with Google</a>
+        <% } %>
 </body>
 
 </html>

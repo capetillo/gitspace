@@ -8,21 +8,16 @@ module.exports = {
   viewInbox,
   sendMessage,
   delete: deleteMessage,
-
 }
 
 function index(req, res, next) {
   let modelQuery = req.query.name ? { name: new RegExp(req.query.name, 'i') } : {};
-  // Default to sorting by name
   let sortKey = req.query.sort || 'name';
   User.find(modelQuery)
     .sort(sortKey).exec(function (err, users) {
       if (err) return next(err);
-      // Passing search values, name & sortKey, for use in the EJS
-   
       res.render('users/index', {
         users,
-        // if you have a user this is their mongo document
         user: req.user,
         name: req.query.name,
         sortKey
@@ -41,7 +36,6 @@ function shareStatus(req, res) {
 function viewProfile(req, res) {
   User.findById(req.params.id, function (err, user) {
     City.find({}, function (err, city) {
-      console.log("City on profile", City)
       res.render('users/profile', {
         user,
         city
@@ -68,12 +62,10 @@ function sendMessage(req, res) {
           user,
           message
         });
-
       });
     });
   });
 };
-
 
 function deleteMessage(req, res) {
   Message.findByIdAndDelete(req.params.messageId, function (err) {
