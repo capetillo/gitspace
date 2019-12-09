@@ -2,6 +2,8 @@
 
 GitSpace is a space for you to reflect on your day, how you feel, jot down reminders and the goals you have for the day. On GitSpace, you can update your goals if you complete them, you can delete your reminders, and see how you've been feeling throughout the day as way to remind yourself that feelings are temporary and everything will pass! 
 
+https://imgur.com/0Yd1Lsb
+
 ## Technologies used: 
 
 HTML, CSS, Javascript, Express, MongoDB, and Node.js
