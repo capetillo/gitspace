@@ -25,14 +25,17 @@
         <h2>This is where I'm from: </h2>
         <% user.city.forEach(function(c) { %>
 
-        <h3><%= c %></h3>
+        <h3><%= c.city %></h3>
         <% }) %>
+
+       
 
         <h3>Did you move?</h3>
         <div>
-            <form action="/users/<%=user.id%>/cities?_method=POST" method="POST">
-                <input type="text"><button>Update</button>
+            <form action="/users/<%=user.id%>/cities?_method=PUT" method="POST">
+                <input type="text" name="updatedCity"><button>Update</button>
             </form>
+           
         </div>
     </div>
 </body>

@@ -11,6 +11,7 @@ router.put('/users/:id/cities', isLoggedin, citiesCtrl.updateCity);
 
 
 
+
 function isLoggedin(req, res, next) {
     if (req.isAuthenticated() ) return next();
     res.redirect('/auth/google');  
